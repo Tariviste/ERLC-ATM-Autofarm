@@ -18,19 +18,13 @@ local function hookgamemenu(child)
                       local GameMenu = child
            local HackingUI = GameMenu:WaitForChild("ATM"):WaitForChild("Hacking")
            local SelectingCodeTextLabel = HackingUI:WaitForChild("SelectingCode")
-           local function Click()
+           
+           local function MoveCursorToCenter()
                local ScreenSize = GameMenu.AbsoluteSize
                local X = math.floor(ScreenSize.X / 2)
                local Y = math.floor(ScreenSize.Y / 2)
-local VirtualInputManager = game:GetService("VirtualInputManager")
-VirtualInputManager:SendMouseButtonEvent(
-X,
-Y,
-0,
-true,
-game,
-0
-)
+
+               mousemoveabs(X,Y)
            end
            -- Listen for ATM hack start
            CycleFrame.DescendantAdded:Connect(function( NewDescendant )
@@ -38,12 +32,14 @@ game,
                    if NewDescendant:IsA("TextLabel") then
                        NewDescendant:GetPropertyChangedSignal("BackgroundColor3"):Connect(function()
                            if NewDescendant.Text == SelectingCodeTextLabel.Text and NewDescendant.BackgroundColor3 ~= Color3.fromRGB(0,0,0) then
-Click()
+                               MoveCursorToCenter()
+                               mouse1click()
                            end
                        end)
                    end
-                   end)
+               end)
            end)
+end
 end
 end)
 end
