@@ -34,6 +34,7 @@ local function hookgamemenu(child)
                    if NewDescendant:IsA("TextLabel") then
                        NewDescendant:GetPropertyChangedSignal("BackgroundColor3"):Connect(function()
                            if NewDescendant.Text == SelectingCodeTextLabel.Text and NewDescendant.BackgroundColor3 ~= Color3.fromRGB(0,0,0) then
+game:GetService("VirtualUser"):CaptureController()
                                MoveCursorToCenter()
                                mouse1click()
                            end
