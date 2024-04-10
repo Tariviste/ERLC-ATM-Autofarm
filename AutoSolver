@@ -15,8 +15,10 @@ local logging = {}
 local function hookgamemenu(child)
    local success, message = pcall(function()
        if child.Name == "GameMenus" and child:IsA("ScreenGui") then
-                      local GameMenu = child
+           local GameMenu = child
            local HackingUI = GameMenu:WaitForChild("ATM"):WaitForChild("Hacking")
+
+           local CycleFrame = HackingUI:WaitForChild("CycleFrame")
            local SelectingCodeTextLabel = HackingUI:WaitForChild("SelectingCode")
            
            local function MoveCursorToCenter()
@@ -39,7 +41,6 @@ local function hookgamemenu(child)
                    end
                end)
            end)
-end
 end
 end)
 end
